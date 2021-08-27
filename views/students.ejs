@@ -1,6 +1,33 @@
 <%- include('partials/header.ejs') %> 
-<h1>Welcome from students.ejs</h1>
+<div class="container mx-10 mt-3">
+    <div class="row">
+        <% JSON.parse(data).forEach(student=>{%>
+            <div class="col col-lg-4 col-md-6 col-sm-8">
+                <div class="card text-white bg-secondary mb-3" style="max-width: 18rem;">
+                    <div class="card-header bg-dark"><%=student.id%></div>
+                    <div class="card-body">
+                      <h5 class="card-title"><%=student.name%></h5>
+                      <h5 class="card-title"><%=student.address%></h5>
+                      <h5 class="card-title"><%=student.contact%></h5>
+                      <!-- <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p> -->
+                    </div>
+                </div>
+            </div>
+        <%})%> 
+    </div>
+    <!-- <div class="card p-2 bg-secondary text-white rounded" style="width: 18rem;">
+        <div class="card-body">
+          <div class="div_header bg-dark text-white p-3 mb-2 rounded">id</div>
+          <h5 class="card-title">Card title</h5>
+          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <a href="#" class="card-link">Card link</a>
+          <a href="#" class="card-link">Another link</a>
+        </div>
+    </div> -->
+    
+</div>
+
 <!-- <script src="/students.js" charset="utf-8"></script> -->
-let data = <%- data %>
-console.log(data) 
+
 <%- include('partials/footer.ejs') %> 

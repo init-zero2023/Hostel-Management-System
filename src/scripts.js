@@ -2,6 +2,7 @@ const express = require('express')
 const path = require('path')
 const mysql = require('mysql')
 const bodyParser = require('body-parser')
+const { json } = require('body-parser')
 // const { type } = require('os')
 
 
@@ -36,8 +37,9 @@ app.get('/students', (req, res)=>{
                 if(error){
                     res.status(502).send({error: "Something went wrong"})
                 }else{
+                    console.log(rows)
                     console.log('Successful query')
-                    res.render('students', rows)
+                    res.render('students', {data: JSON.stringify(rows)})
                 }
             })
         }
@@ -57,7 +59,7 @@ app.post('/students', (req, res)=>{
             let address = req.body.address
             let contact = req.body.contact
             console.log(typeof(id), typeof(name), typeof(address), typeof(contact))
-            const query = `INSERT INTO students(id, sname, address, contact) values(${id}, "${name}", "${address}", ${contact})`
+            const query = `INSERT INTO students(id, name, address, contact) values('${id}', "${name}", "${address}", ${contact})`
             console.log(query)
             temp.query(query, (error, rows, fields)=>{
                 temp.release();
@@ -82,7 +84,7 @@ app.delete("/students", (req, res)=>{
         }else{
             console.log(req.query)
             let id = req.query.id
-            const  query = `DELETE FROM students where id=${id}`
+            const  query = `DELETE FROM students where id='${id}'`
             console.log(query)
             temp.query(query, (error, rows, fields)=>{
                 temp.release()
@@ -111,6 +113,10 @@ app.delete("/students", (req, res)=>{
 //     })
 // })
 
-app.listen(3030, ()=>{
-    console.log(`server is starting at port 3030`)
+app.get('/addstudent', (req, res)=>{
+    res.render('addstudent')
+})
+
+app.listen(3000, ()=>{
+    console.log(`server is starting at port 3000`)
 })
