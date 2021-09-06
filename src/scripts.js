@@ -8,11 +8,15 @@ const { json } = require('body-parser')
 
 
 const app = express()
-const viewpath = path.join(__dirname, 'public')
+const viewpath = path.join(__dirname, '../public')
 console.log(viewpath)
 app.set('view engine', 'ejs')
 app.use(express.static(viewpath))
+app.use(bodyParser.urlencoded({
+    extended: true
+}))
 app.use(bodyParser.json())
+
 
 var connection = mysql.createPool({
     connectionLimit:100, 
@@ -24,29 +28,11 @@ var connection = mysql.createPool({
 
 
 
-app.get('/students', (req, res)=>{
-    connection.getConnection((error, temp)=>{
-        if(error){
-            temp.release();
-            res.status(404).send({error: "Unable to connect database"})
-            console.log(error)
-        }else{
-            console.log('Connected!!')
-            temp.query("SELECT * from students", (error, rows, fields)=>{
-                temp.release();
-                if(error){
-                    res.status(502).send({error: "Something went wrong"})
-                }else{
-                    console.log(rows)
-                    console.log('Successful query')
-                    res.render('students', {data: JSON.stringify(rows)})
-                }
-            })
-        }
-    })
+app.get('/showdata', (req, res)=>{
+    res.render('showdata')
 })
 
-app.post('/students', (req, res)=>{
+app.post('/addstudent', (req, res)=>{
     connection.getConnection((error, temp)=>{
         // temp.release()
         if(error){
@@ -54,6 +40,7 @@ app.post('/students', (req, res)=>{
             res.status(404).send({error: "Unable to connect database"})
         }else{
             // query = `INSERT INTO students()`
+            console.log(req.body)
             let id = req.body.id
             let name = req.body.name
             let address = req.body.address
@@ -69,14 +56,15 @@ app.post('/students', (req, res)=>{
                 }else{
                     console.log('Successful query')
                     // res.status(200).json(rows)
-                    res.redirect('/students')
+                    res.redirect('/showdata')
+
                 }
             })
         }
     })
 })
 
-app.delete("/students", (req, res)=>{
+app.delete("/deletestudent", (req, res)=>{
     connection.getConnection((error, temp)=>{
         if(error){
             temp.release()
@@ -113,10 +101,33 @@ app.delete("/students", (req, res)=>{
 //     })
 // })
 
-app.get('/addstudent', (req, res)=>{
-    res.render('addstudent')
+app.get('/adddata',  (req, res)=>{
+    
+    connection.getConnection((error, temp)=>{
+        res.render('adddata')
+    })
+    // res.send({data:ids})
+})
+app.get('/fetchQuery', (req, res)=>{
+    connection.getConnection((error, temp)=>{
+        if(error){
+            temp.release()
+            res.status(404).send({error: "Unable to connect database"})
+        }else{
+            let query = req.query.sqlQuery
+            temp.query(query, (error, rows, fields)=>{
+                temp.release()
+                if(error){
+                    console.log(error)
+                    res.status(502).send({error: "Something went wrong"})
+                }else{
+                    res.send(JSON.stringify(rows))
+                }
+            })
+        }
+    })
 })
 
-app.listen(3000, ()=>{
-    console.log(`server is starting at port 3000`)
+app.listen(5000, ()=>{
+    console.log(`server is starting at port 5000`)
 })

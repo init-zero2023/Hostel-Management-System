@@ -1,0 +1,63 @@
+<%- include('partials/header.ejs') %> 
+<div class="container mx-10 mt-3 card">
+    <nav>
+        <div class="nav nav-tabs mt-2" id="nav-tab" role="tablist">
+          <a class="nav-item nav-link active" id="nav-hostelTable-tab" data-toggle="tab" href="#nav-hostelTable" role="tab" aria-controls="nav-hostelTable" aria-selected="false">Hostel Table</a>
+          <a class="nav-item nav-link " id="nav-studentTable-tab" data-toggle="tab" href="#nav-studentTable" role="tab" aria-controls="nav-studentTable" aria-selected="true">Student Table</a>
+          <a class="nav-item nav-link" id="nav-roomsTable-tab" data-toggle="tab" href="#nav-roomsTable" role="tab" aria-controls="nav-roomsTable" aria-selected="false">Rooms Table</a>
+        </div>
+      </nav>
+      <div class="tab-content " id="nav-tabContent">
+
+
+        <div class="tab-pane fade card-body show active" id="nav-hostelTable" role="tabpanel" aria-labelledby="nav-hostelTable-tab">
+            <table class="table">
+                <thead class="thead-dark" >
+                <tr>
+                    <th scope="col">Student ID</th>
+                    <th scope="col">Room No. Alloted</th>
+                    <th scope="col">Date of Allotment</th>
+                </tr>
+                </thead>
+                <tbody id="hosteltable">
+
+                </tbody>
+            </table>
+        </div>
+
+
+        <div class="tab-pane fade card-body" id="nav-studentTable" role="tabpanel" aria-labelledby="nav-studentTable-tab">
+            <table class="table ">
+                <thead class="thead-dark" >
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Contact</th>
+                </tr>
+                </thead>
+                <tbody id="studenttable">
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="tab-pane fade card-body" id="nav-roomsTable" role="tabpanel" aria-labelledby="nav-roomsTable-tab">
+            <table class="table">
+                <thead class="thead-dark" >
+                <tr>
+                    <th scope="col">Room No.</th>
+                    <th scope="col">Occupency</th>
+                    <th scope="col">Current Status</th>
+                </tr>
+                </thead>
+                <tbody id="roomstable">
+                </tbody>
+            </table>
+        </div>
+      </div>
+</div>
+
+<script src="/js/showdata.js" charset="utf-8"></script>
+
+<%- include('partials/footer.ejs') %> 
+

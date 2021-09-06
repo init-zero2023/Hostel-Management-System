@@ -1,0 +1,110 @@
+<%-include('partials/header.ejs') %> 
+<div class="container mt-3 card border-danger">
+    <nav>
+      <div class="nav nav-tabs mt-2" id="nav-tab" role="tablist">
+        <a class="nav-item nav-link active" id="nav-addNewStudent-tab" data-toggle="tab" href="#nav-addNewStudent" role="tab" aria-controls="nav-addNewStudent" aria-selected="true">Add new student</a>
+        <a class="nav-item nav-link" id="nav-allotHostel-tab" data-toggle="tab" href="#nav-allotHostel" role="tab" aria-controls="nav-allotHostel" aria-selected="false">Allot hostel</a>
+        <a class="nav-item nav-link" id="nav-addNewRoom-tab" data-toggle="tab" href="#nav-addNewRoom" role="tab" aria-controls="nav-addNewRoom" aria-selected="false">Add new room</a>
+      </div>
+    </nav>
+    <div class="tab-content  card-body" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="nav-addNewStudent" role="tabpanel" aria-labelledby="nav-addNewStudent-tab">
+        <form method="POST" action="/addstudent">
+          <div class="form-group row">
+            <label for="Id" class="col-sm-2 col-form-label"> ID</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="Id" name='id' placeholder="" autocomplete="off" required>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="Name" class="col-sm-2 col-form-label"> Name</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="Name" name="name" placeholder="" autocomplete="off" required>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="Address" class="col-sm-2 col-form-label"> Address</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="Address" name="address" placeholder="" autocomplete="off" required>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="Contact" class="col-sm-2 col-form-label"> Contact</label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="Contact" name='contact' placeholder="" autocomplete="off" required>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-10 text-center">
+              <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="tab-pane fade" id="nav-allotHostel" role="tabpanel" aria-labelledby="nav-allotHostel-tab">
+        <form>
+          <div class="form-group row">
+            <label for="allotedStudentId" class="col-sm-2 col-form-label">Student ID</label>
+            <div class="col-sm-10">
+              <select id="ids" class="form-select form-select-lg mb-3" aria-label=".form-select-lg">
+                <label for="roomType" class="col-sm-2 col-form-label">Room Type</label>
+                <option value="" disabled selected>Select student id</option>n>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <label for="allotedRoomNo" class="col-sm-2 col-form-label">Select room no. </label>
+            <div class="col-sm-10 ">
+              <select id="rooms" class="form-select form-select-lg mb-3" aria-label=".form-select-lg">
+                <label for="roomType" class="col-sm-2 col-form-label">Room Type</label>
+                <option value="" disabled selected>Room no.</option>
+              </select>
+            </div>
+          </div>
+          <!-- <div class="form-group row">
+            <label for="allotmentDate" class="col-sm-2 col-form-label">Allotment Date </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="allotmentDate" placeholder="">
+            </div>
+          </div> -->
+                   
+          <div class="form-group row ">
+            <div class="col-sm-10 text-center">
+              <button type="submit" class="btn btn-primary">Allot</button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="tab-pane fade" id="nav-addNewRoom" role="tabpanel" aria-labelledby="nav-addNewRoom-tab">
+        <form>
+          <div class="form-group row">
+            <label for="roomNo" class="col-sm-2 col-form-label">Room No. </label>
+            <div class="col-sm-10">
+              <input type="text" class="form-control" id="roomNo" placeholder="">
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="roomType" class="col-sm-2 col-form-label">Room Type</label>
+            <div class="col-sm-10">
+              <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg">
+                <label for="roomType" class="col-sm-2 col-form-label">Room Type</label>
+                <option value="" disabled selected>Select occupency</option>
+                <option value="1">Single-occupency</option>
+                <option value="2">Double-occupency</option>
+                <option value="3">Triple-occupency</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group row">
+            <div class="col-sm-10 text-center">
+              <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+</div>
+<script src="js/adddata.js" charset="utf-8"></script>
+
+<%-include('partials/footer.ejs') %> 
