@@ -28,8 +28,12 @@ var connection = mysql.createPool({
 
 
 
-app.get('/showdata', (req, res)=>{
-    res.render('showdata')
+app.get('/tables', (req, res)=>{
+    res.render('showtables')
+})
+
+app.get('/', (req, res)=>{
+    res.render('showhostel')
 })
 
 app.post('/addstudent', (req, res)=>{
@@ -105,9 +109,15 @@ app.get('/adddata',  (req, res)=>{
     
     connection.getConnection((error, temp)=>{
         res.render('adddata')
+
     })
     // res.send({data:ids})
 })
+
+app.post('/addroom', (req, res)=>{
+    console.log(req.body.one)
+})
+
 app.get('/fetchQuery', (req, res)=>{
     connection.getConnection((error, temp)=>{
         if(error){

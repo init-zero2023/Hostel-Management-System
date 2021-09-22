@@ -76,7 +76,7 @@
         </form>
       </div>
       <div class="tab-pane fade" id="nav-addNewRoom" role="tabpanel" aria-labelledby="nav-addNewRoom-tab">
-        <form>
+        <form method="POST" action="/addroom">
           <div class="form-group row">
             <label for="roomNo" class="col-sm-2 col-form-label">Room No. </label>
             <div class="col-sm-10">
@@ -90,9 +90,9 @@
               <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg">
                 <label for="roomType" class="col-sm-2 col-form-label">Room Type</label>
                 <option value="" disabled selected>Select occupency</option>
-                <option value="1">Single-occupency</option>
-                <option value="2">Double-occupency</option>
-                <option value="3">Triple-occupency</option>
+                <option name='one' value="1">1</option>
+                <option name='two' value="2">2</option>
+                <option name='three' value="3">3</option>
               </select>
             </div>
           </div>
